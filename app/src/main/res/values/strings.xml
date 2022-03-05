@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Online shop</string>
+
+    <string name="catalog">Каталог</string>
+    <string name="basket">Корзина</string>
+    <string name="favorite">Избранное</string>
+    <string name="profile">Профиль</string>
+    <string name="online_shop">Online shop</string>
+
+    <string name="log_in">Войти</string>
+    <string name="log_up">Создать аккаунт</string>
+</resources>

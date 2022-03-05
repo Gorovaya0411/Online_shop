@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_general_poems"
+    app:startDestination="@id/catalogFragment">
+
+    <fragment
+        android:id="@+id/basketFragment"
+        android:name="com.firecode.onlineshop.ui.general_navigation.basket.BasketFragment"
+        android:label="BasketFragment"
+        tools:layout="@layout/fragment_basket"/>
+    <fragment
+        android:id="@+id/catalogFragment"
+        android:name="com.firecode.onlineshop.ui.general_navigation.catalog.CatalogFragment"
+        android:label="CatalogFragment"
+        tools:layout="@layout/fragment_catalog"/>
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.firecode.onlineshop.ui.general_navigation.favorites.FavoritesFragment"
+        android:label="FavoritesFragment"
+        tools:layout="@layout/fragment_favorites"/>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.firecode.onlineshop.ui.general_navigation.profile.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile"/>
+</navigation>
