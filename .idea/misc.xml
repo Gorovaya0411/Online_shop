@@ -3,8 +3,23 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-hdpi/selector_general.xml" value="0.201" />
         <entry key="app/src/main/res/drawable-hdpi/selector_profile.xml" value="0.19" />
+        <entry key="app/src/main/res/drawable-mdpi/checkbox_detailed_poem_add.xml" value="0.203" />
+        <entry key="app/src/main/res/drawable-mdpi/checkbox_detailed_poem_like.xml" value="0.203" />
+        <entry key="app/src/main/res/drawable-mdpi/ic_main_close.xml" value="0.203" />
+        <entry key="app/src/main/res/drawable/ic_baseline_delete.xml" value="0.203" />
+        <entry key="app/src/main/res/drawable/ic_baseline_favorite.xml" value="0.203" />
+        <entry key="app/src/main/res/drawable/ic_baseline_favorite_border.xml" value="0.203" />
+        <entry key="app/src/main/res/drawable/ic_baseline_person_add_24.xml" value="0.201" />
+        <entry key="app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.203" />
+        <entry key="app/src/main/res/drawable/ic_basket.xml" value="0.203" />
+        <entry key="app/src/main/res/drawable/ic_basket_outline.xml" value="0.203" />
+        <entry key="app/src/main/res/drawable/ic_login_log_in.xml" value="0.201" />
         <entry key="app/src/main/res/drawable/ic_menu_account.xml" value="0.19" />
+        <entry key="app/src/main/res/drawable/ic_menu_basket.xml" value="0.201" />
+        <entry key="app/src/main/res/drawable/ic_profile_log_in.xml" value="0.201" />
+        <entry key="app/src/main/res/drawable/ic_register.xml" value="0.203" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18177083333333333" />
         <entry key="app/src/main/res/layout/fragment_basket.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/layout/fragment_catalog.xml" value="0.19322916666666667" />
@@ -14,6 +29,9 @@
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.18177083333333333" />
         <entry key="app/src/main/res/layout/fragment_splash.xml" value="0.19322916666666667" />
+        <entry key="app/src/main/res/layout/item_basket.xml" value="0.33469202898550726" />
+        <entry key="app/src/main/res/layout/item_catalog.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/item_favorite.xml" value="0.33" />
         <entry key="app/src/main/res/menu/menu_bottom_community.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/menu/menu_bottom_general_poem.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/menu/menu_bottom_profile.xml" value="0.18177083333333333" />

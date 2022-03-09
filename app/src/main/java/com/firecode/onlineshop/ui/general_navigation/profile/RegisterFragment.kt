@@ -1,19 +1,15 @@
 package com.firecode.onlineshop.ui.general_navigation.profile
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import com.firecode.onlineshop.R
-import com.firecode.onlineshop.ui.main.MainActivity
+import com.firecode.onlineshop.databinding.FragmentRegisterBinding
+import com.firecode.onlineshop.ui.base.BaseFragment
 
-class RegisterFragment : Fragment() {
-    // inflate the layout
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ) =
-        inflater.inflate(R.layout.fragment_login, container, false)!!
+class RegisterFragment : BaseFragment<FragmentRegisterBinding>(){
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun initViewBinding() = FragmentRegisterBinding.inflate(layoutInflater)
 }

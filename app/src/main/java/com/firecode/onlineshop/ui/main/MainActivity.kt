@@ -1,19 +1,15 @@
 package com.firecode.onlineshop.ui.main
 
-import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import android.os.Vibrator
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.firecode.onlineshop.R
 import com.firecode.onlineshop.MyApplication
 import com.firecode.onlineshop.di.modul.ui.main.MainActivityModule
-import com.firecode.onlineshop.ui.general_navigation.profile.MyPagerAdapter
 import moxy.MvpAppCompatActivity
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter

@@ -6,88 +6,87 @@
     android:layout_height="match_parent"
     android:background="@color/num_2_pink">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/materialToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/num_2_pink"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:contentInsetStart="0dp"
+        app:contentInsetStart="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/materialToolbar"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tool:layout_editor_absoluteX="0dp">
+            android:layout_height="wrap_content">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <TextView
+                android:id="@+id/profile_profile_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:fontFamily="@font/g6"
+                android:textColor="@color/num_1_brown"
+                android:text="Профиль"
+                app:layout_constraintStart_toEndOf="@+id/materialCardView"
+                app:layout_constraintTop_toTopOf="@+id/materialCardView"
+                tool:text="Профиль" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:fontFamily="@font/g6"
+                android:textColor="@color/buttom_color"
+                android:textStyle="bold"
+                android:text="Войдите или зарегистрируйтесь"
+                app:layout_constraintBottom_toBottomOf="@+id/materialCardView"
+                app:layout_constraintStart_toEndOf="@+id/materialCardView"
+                tool:text="Войдите или зарегистрируйтесь" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="12dp"
+                android:backgroundTint="@color/buttom_color"
+                app:cardCornerRadius="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_menu_account"
+                    android:contentDescription="@string/profile" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/general_poets_bottom_navigation_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="?attr/actionBarSize"
+                android:layout_marginTop="10dp"
+                android:background="@color/num_2_pink"
+                app:itemIconTint="@drawable/selector_profile"
+                app:itemRippleColor="@color/num_1_brown"
+                app:itemTextColor="@drawable/selector_profile"
+                app:labelVisibilityMode="labeled"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialCardView"
+                app:menu="@menu/menu_bottom_profile" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.appbar.MaterialToolbar>
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/materialCardView"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="12dp"
-                    android:backgroundTint="@color/buttom_color"
-                    app:cardCornerRadius="20dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@drawable/ic_menu_account"
-                        android:contentDescription="@string/profile" />
-                </com.google.android.material.card.MaterialCardView>
-
-                <TextView
-                    android:id="@+id/profile_profile_txt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:fontFamily="@font/g6"
-                    android:textColor="@color/num_1_brown"
-                    app:layout_constraintStart_toEndOf="@+id/materialCardView"
-                    app:layout_constraintTop_toTopOf="@+id/materialCardView"
-                    tool:text="Профиль" />
-
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:fontFamily="@font/g6"
-                    android:textColor="@color/buttom_color"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/materialCardView"
-                    app:layout_constraintStart_toEndOf="@+id/materialCardView"
-                    tool:text="Войдите или зарегистрируйтесь" />
-
-                <android.support.design.widget.TabLayout
-                    android:id="@+id/tabs"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@+id/materialCardView"
-                    app:tabBackground="@color/num_2_pink"
-                    app:tabGravity="fill"
-                    app:tabMode="fixed"
-                    app:tabTextColor="@android:color/white" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.appbar.MaterialToolbar>
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewPager"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/profile_fragment_container_view"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        app:defaultNavHost="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/materialToolbar"
+        app:navGraph="@navigation/nav_graph_profile" />
 </androidx.constraintlayout.widget.ConstraintLayout>
