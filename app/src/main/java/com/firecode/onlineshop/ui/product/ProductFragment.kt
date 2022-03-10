@@ -1,5 +1,6 @@
-package com.firecode.onlineshop.ui.general_navigation.catalog
+package com.firecode.onlineshop.ui.product
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
@@ -8,20 +9,19 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.firecode.onlineshop.MyApplication
 import com.firecode.onlineshop.R
-import com.firecode.onlineshop.databinding.FragmentCatalogBinding
+import com.firecode.onlineshop.databinding.FragmentProductBinding
 import com.firecode.onlineshop.di.modul.ui.main.MainActivityModule
 import com.firecode.onlineshop.extension.PaginationScrollListener
-import com.firecode.onlineshop.model.AnswerCategories
+import com.firecode.onlineshop.model.AnswerProducts
 import com.firecode.onlineshop.ui.main.MainActivity
 import moxy.MvpAppCompatFragment
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import java.util.*
 
-class CatalogFragment : MvpAppCompatFragment(), CatalogView {
+class ProductFragment : MvpAppCompatFragment(), ProductView {
 
     private val contextActivity: MainActivity by lazy(LazyThreadSafetyMode.NONE) {
         (activity as MainActivity)
@@ -30,35 +30,35 @@ class CatalogFragment : MvpAppCompatFragment(), CatalogView {
     private lateinit var handler: Handler
     private lateinit var runnable: Runnable
     private val myAdapter =
-        CatalogAdapter { openingNewActivity(it) }
+        ProductAdapter{openingNewActivity(it)}
 
-    private lateinit var binding: FragmentCatalogBinding
+    private lateinit var binding: FragmentProductBinding
 
     @InjectPresenter
-    lateinit var mainPresenter: CatalogPresenter
+    lateinit var mainPresenter: ProductPresenter
 
     @ProvidePresenter
-    fun provideLandingActivityPresenter(): CatalogPresenter {
+    fun provideLandingActivityPresenter(): ProductPresenter {
         return MyApplication.appComponent.with(
             MainActivityModule()
-        ).catalog
+        ).product
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentCatalogBinding.bind(view)
+        binding = FragmentProductBinding.bind(view)
 
         workWithAdapter()
         visibilityProgressBar(false)
-        mainPresenter.swipeRefresh()
+        mainPresenter.swipeRefresh(arguments?.getString("categ")!!)
 
         random = Random()
         handler = Handler()
         binding.swipeRefreshLayout.setOnRefreshListener {
 
             runnable = Runnable {
-                mainPresenter.swipeRefresh()
-                mainPresenter.getMoreItems()
+                mainPresenter.swipeRefresh(arguments?.getString("categ")!!)
+                mainPresenter.getMoreItems(arguments?.getString("categ")!!)
                 binding.swipeRefreshLayout.isRefreshing = false
             }
 
@@ -69,8 +69,8 @@ class CatalogFragment : MvpAppCompatFragment(), CatalogView {
 
         binding.recyclerView.addOnScrollListener(
             PaginationScrollListener(
-                { mainPresenter.getMoreItems() },
-                3
+                { mainPresenter.getMoreItems(arguments?.getString("categ")!!) },
+                20
             )
         )
     }
@@ -80,11 +80,11 @@ class CatalogFragment : MvpAppCompatFragment(), CatalogView {
         savedInstanceState: Bundle?
 
     ): View? {
-        return inflater.inflate(R.layout.fragment_catalog, container, false)
+        return inflater.inflate(R.layout.fragment_product, container, false)
     }
 
     private fun workWithAdapter() {
-        binding.recyclerView.layoutManager = LinearLayoutManager(contextActivity)
+        binding.recyclerView.layoutManager = GridLayoutManager(contextActivity, 2)
         binding.recyclerView.adapter = myAdapter
     }
 
@@ -99,19 +99,23 @@ class CatalogFragment : MvpAppCompatFragment(), CatalogView {
         }
     }
 
-    override fun populateData(model: List<AnswerCategories>) {
+    override fun populateData(model: List<AnswerProducts>) {
         myAdapter.setData(model)
     }
 
-    private fun openingNewActivity(model: AnswerCategories) {
+    private fun openingNewActivity(model: AnswerProducts) {
         val bundle = Bundle()
         with(bundle){
-            putString("categ", model.title)
+            putString("title", model.title)
+            putString("img", model.img)
+            putString("info", model.info)
+            putInt("price", model.price)
         }
-        findNavController().navigate(R.id.productFragment, bundle)
+        findNavController().navigate(R.id.detailedFragment, bundle)
+
     }
 
-    override fun addData(model: List<AnswerCategories>) {
+    override fun addData(model: List<AnswerProducts>) {
         myAdapter.addData(model)
     }
 }

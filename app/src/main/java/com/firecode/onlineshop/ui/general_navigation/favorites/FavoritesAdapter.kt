@@ -4,17 +4,16 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.firecode.onlineshop.R
-import com.firecode.onlineshop.model.PoemAnswer
+import com.firecode.onlineshop.model.AnswerProducts
 
 class FavoritesAdapter :
     RecyclerView.Adapter<FavoritesAdapter.MyViewHolder>() {
-    var dataTest = mutableListOf<PoemAnswer?>()
+    var dataTest = mutableListOf<AnswerProducts?>()
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(data: MutableList<PoemAnswer?>) {
+    fun setData(data: MutableList<AnswerProducts?>) {
         this.dataTest = data
         notifyDataSetChanged()
     }
@@ -41,7 +40,7 @@ class FavoritesAdapter :
 
 
 
-        fun bind(model: PoemAnswer) {
+        fun bind(model: AnswerProducts) {
 
         }
     }

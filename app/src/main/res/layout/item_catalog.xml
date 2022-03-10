@@ -1,82 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="170dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="15dp"
-    android:background="@color/num_2_pink"
-    app:cardCornerRadius="15dp">
+    android:layout_margin="10dp"
+    android:backgroundTint="@color/buttom_color"
+    app:cardCornerRadius="20dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/num_2_pink">
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:contentDescription="@string/log_in"
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:fontFamily="@font/reza_zulmi_sans"
+            android:textColor="@color/num_1_brown"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <CheckBox
-            android:id="@+id/detailed_poem_like_check_box"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_margin="10dp"
-            android:background="@drawable/checkbox_detailed_poem_like"
-            android:button="@color/num_2_pink"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <CheckBox
-            android:id="@+id/detailed_poem_add_poem_check_box"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_margin="10dp"
-            android:background="@drawable/checkbox_detailed_poem_add"
-            android:button="@color/num_2_pink"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_margin="10dp"
             android:fontFamily="@font/reza_zulmi_sans"
-            android:text="1033Р"
             android:textColor="@color/num_1_brown"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/detailed_poem_add_poem_check_box"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/detailed_poem_add_poem_check_box" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:fontFamily="@font/reza_zulmi_sans"
-            android:text="Название продукта"
-            android:textColor="@color/num_1_brown"
-            android:textSize="13sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:fontFamily="@font/reza_zulmi_sans"
-            android:text="Краткое описание"
-            android:textColor="@color/gray"
-            android:textSize="10sp"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3"
-            tools:ignore="SmallSp" />
-
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

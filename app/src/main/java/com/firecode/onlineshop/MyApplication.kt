@@ -14,6 +14,5 @@ class MyApplication : Application() {
 
     companion object {
         lateinit var appComponent: AppComponent
-            private set
     }
 }

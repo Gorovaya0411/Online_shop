@@ -14,7 +14,11 @@
         android:id="@+id/catalogFragment"
         android:name="com.firecode.onlineshop.ui.general_navigation.catalog.CatalogFragment"
         android:label="CatalogFragment"
-        tools:layout="@layout/fragment_catalog"/>
+        tools:layout="@layout/fragment_catalog">
+        <action
+            android:id="@+id/action_catalogFragment_to_productFragment"
+            app:destination="@id/productFragment" />
+    </fragment>
     <fragment
         android:id="@+id/favoritesFragment"
         android:name="com.firecode.onlineshop.ui.general_navigation.favorites.FavoritesFragment"
@@ -25,4 +29,31 @@
         android:name="com.firecode.onlineshop.ui.general_navigation.profile.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile"/>
+    <fragment
+        android:id="@+id/productFragment"
+        android:name="com.firecode.onlineshop.ui.product.ProductFragment"
+        android:label="ProductFragment" >
+        <argument
+            android:name="categ"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_productFragment_to_detailedFragment"
+            app:destination="@id/detailedFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailedFragment"
+        android:name="com.firecode.onlineshop.ui.detailedFragment.DetailedFragment"
+        android:label="DetailedFragment" />
+    <argument
+        android:name="title"
+        app:argType="string" />
+    <argument
+        android:name="img"
+        app:argType="string" />
+    <argument
+        android:name="price"
+        app:argType="integer" />
+    <argument
+        android:name="info"
+        app:argType="string" />
 </navigation>

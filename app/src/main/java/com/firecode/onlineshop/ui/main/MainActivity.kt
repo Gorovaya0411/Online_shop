@@ -21,8 +21,10 @@ class MainActivity : MvpAppCompatActivity(), MainActivityView {
     lateinit var presenter: MainActivityPresenter
 
     @ProvidePresenter
-    fun provideMainActivityPresenter(): MainActivityPresenter {
-        return MyApplication.appComponent.with(MainActivityModule()).presenter
+    fun provideLandingActivityPresenter(): MainActivityPresenter {
+        return MyApplication.appComponent.with(
+            MainActivityModule()
+        ).main
     }
 
     private lateinit var navController: NavController
@@ -58,6 +60,5 @@ class MainActivity : MvpAppCompatActivity(), MainActivityView {
             .findFragmentById(R.id.main_nav_host_container) as NavHostFragment
         navController = navHostFragment.navController
         navController.navigate(R.id.action_splashFragment_to_generalPoetsFragment)
-
     }
 }
