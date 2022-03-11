@@ -70,7 +70,7 @@ class CatalogFragment : MvpAppCompatFragment(), CatalogView {
         binding.recyclerView.addOnScrollListener(
             PaginationScrollListener(
                 { mainPresenter.getMoreItems() },
-                3
+                20
             )
         )
     }

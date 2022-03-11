@@ -20,11 +20,6 @@
             app:destination="@id/productFragment" />
     </fragment>
     <fragment
-        android:id="@+id/favoritesFragment"
-        android:name="com.firecode.onlineshop.ui.general_navigation.favorites.FavoritesFragment"
-        android:label="FavoritesFragment"
-        tools:layout="@layout/fragment_favorites"/>
-    <fragment
         android:id="@+id/profileFragment"
         android:name="com.firecode.onlineshop.ui.general_navigation.profile.ProfileFragment"
         android:label="ProfileFragment"
