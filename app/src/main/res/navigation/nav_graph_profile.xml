@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.firecode.onlineshop.ui.general_navigation.profile.LoginFragment"
+        android:name="com.firecode.onlineshop.ui.general_navigation.profile.login.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login"/>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.firecode.onlineshop.ui.general_navigation.profile.RegisterFragment"
+        android:name="com.firecode.onlineshop.ui.general_navigation.profile.register.RegisterFragment"
         android:label="RegisterFragment"
         tools:layout="@layout/fragment_register"/>
 </navigation>

@@ -1,4 +1,4 @@
-package com.firecode.onlineshop.ui.general_navigation.profile
+package com.firecode.onlineshop.ui.general_navigation.profile.register
 
 import android.os.Bundle
 import android.view.View

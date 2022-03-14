@@ -2,6 +2,7 @@ package com.firecode.onlineshop.ui.detailedFragment
 
 import android.os.Bundle
 import android.view.View
+import com.firecode.onlineshop.R
 import com.firecode.onlineshop.databinding.FragmentDetailedProductBinding
 import com.firecode.onlineshop.ui.base.BaseFragment
 import com.firecode.onlineshop.ui.main.MainActivity
@@ -13,7 +14,7 @@ class DetailedFragment : BaseFragment<FragmentDetailedProductBinding>() {
     private val contextActivity: MainActivity by lazy(LazyThreadSafetyMode.NONE) {
         (activity as MainActivity)
     }
-    val num = 0
+    var num = 0
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -37,7 +38,9 @@ class DetailedFragment : BaseFragment<FragmentDetailedProductBinding>() {
             .into(binding.imageViewCharacter)
 
         binding.bottom.setOnClickListener {
-
+            num ++
+            binding.bottom.setBackgroundResource(R.drawable.ic_group_1__2_)
+            binding.txt.text = "в корзине + $num"
         }
 
     }

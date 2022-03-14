@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/User/AndroidStudioProjects/Online_shop/app/src/main/res/layout/fragment_detailed_product.xml" value="0.25" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Online_shop/app/src/main/res/layout/fragment_login.xml" value="0.28854166666666664" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Online_shop1/app/src/main/res/layout/fragment_catalog.xml" value="0.1" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Online_shop1/app/src/main/res/layout/fragment_detailed_product.xml" value="0.22" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Online_shop1/app/src/main/res/layout/fragment_favorites.xml" value="0.3378623188405797" />
@@ -47,7 +49,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
