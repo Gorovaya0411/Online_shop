@@ -74,11 +74,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0-alpha06'
     implementation 'androidx.preference:preference-ktx:1.1.1'
 
-    // retrofit
-    implementation "com.squareup.retrofit2:retrofit:2.3.0"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:2.3.0"
-    implementation "com.squareup.retrofit2:converter-gson:2.3.0"
-
     // RX android
     implementation "io.reactivex.rxjava2:rxjava:2.2.10"
     implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
@@ -103,11 +98,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
 
     implementation 'com.udojava:EvalEx:2.5'
-
-    // Reactive
-    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.10'
-    implementation 'com.jakewharton.rxbinding3:rxbinding:3.1.0'
 
     // Architecture
     implementation "com.github.moxy-community:moxy:2.2.0"
@@ -137,7 +127,7 @@ dependencies {
     implementation 'androidx.preference:preference-ktx:1.1.1'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.31"
     implementation 'com.google.android.material:material:1.4.0'
-
+    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
 
     //data binding
     kapt 'androidx.databinding:databinding-compiler:4.1.3'

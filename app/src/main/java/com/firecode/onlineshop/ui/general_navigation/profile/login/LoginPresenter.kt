@@ -2,22 +2,22 @@ package com.firecode.onlineshop.ui.general_navigation.profile.login
 
 
 import android.util.Log
+import com.firecode.onlineshop.data.service.OnlineShopApiService
 import com.firecode.onlineshop.domain.MainUseCaseImpl
+import com.firecode.onlineshop.model.Credentials
+import com.firecode.onlineshop.model.GetTokenAnswer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import moxy.MvpPresenter
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import javax.inject.Inject
 
 class LoginPresenter @Inject constructor(private val charactersMainUseCase: MainUseCaseImpl) :
     CommunityActivityPresenter() {
 
     fun swipeRefresh(email: String, password: String) {
-        val disposable = charactersMainUseCase.getToken(email, password)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                Log.e("", it.message)
-            }, {
-                setCheckDetailedFragment(it.message)
-            })
+        Log.e("dfdfgv", charactersMainUseCase.getToken(email,password,"iPhone").token)
     }
 
     override fun getCheckDetailedFragment(): String? {

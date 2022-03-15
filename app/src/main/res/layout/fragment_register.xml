@@ -16,22 +16,6 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/register_username_edit_text"
-            style="@style/EditTextStyle"
-            android:layout_width="318dp"
-            android:layout_height="67dp"
-            android:layout_marginBottom="12dp"
-            android:autofillHints=""
-            android:ems="10"
-            android:foregroundGravity="center_vertical"
-            android:hint="@string/username"
-            android:inputType="textPersonName"
-            android:textSize="20sp">
-
-            <requestFocus />
-        </EditText>
-
-        <EditText
             android:id="@+id/register_email_edit_text"
             style="@style/EditTextStyle"
             android:layout_width="318dp"

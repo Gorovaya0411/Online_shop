@@ -1,19 +1,20 @@
 package com.firecode.onlineshop.data.repository
 
-import com.firecode.onlineshop.data.service.GetTokenApiService
 import com.firecode.onlineshop.data.service.OnlineShopApiService
-import com.firecode.onlineshop.data.service.SetTokenApiService
+import com.firecode.onlineshop.model.Credentials
 import com.firecode.onlineshop.model.DataCat
 import com.firecode.onlineshop.model.DataProd
 import com.firecode.onlineshop.model.GetTokenAnswer
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import rx.Single.just
 import javax.inject.Inject
 
 class CharactersMainRepository @Inject constructor(
-    private val apiService: OnlineShopApiService,
-    private val apiServiceToken: GetTokenApiService,
-    private val apiServiceSetToken: SetTokenApiService
+    private val apiService: OnlineShopApiService
 ) {
     private var increment: Int = 1
 
@@ -25,17 +26,24 @@ class CharactersMainRepository @Inject constructor(
         }.subscribeOn(Schedulers.io())
     }
 
-    fun getToken(email: String, password: String): Observable<GetTokenAnswer> {
-        increment = 1
-        return apiServiceToken.getCategories(email, password).flatMap { it ->
+    fun getToken(email: String, password: String, device_name: String): GetTokenAnswer {
+        var result :GetTokenAnswer
+        apiService.getToken(Credentials(email, password, device_name)).enqueue(object :
+            Callback<GetTokenAnswer> {
+            override fun onResponse(call: Call<GetTokenAnswer>, response: Response<GetTokenAnswer>?) {
+               response.
+            }
 
-            return@flatMap Observable.just(it)
-        }.subscribeOn(Schedulers.io())
+            override fun onFailure(call: Call<GetTokenAnswer>, t: Throwable?) {
+                //Произошла ошибка
+            }
+        })
+        return result
     }
 
     fun setToken(email: String, password: String): Observable<GetTokenAnswer> {
         increment = 1
-        return apiServiceSetToken.getCategories(email, password).flatMap { it ->
+        return apiService.setToken(email, password).flatMap { it ->
 
             return@flatMap Observable.just(it)
         }.subscribeOn(Schedulers.io())

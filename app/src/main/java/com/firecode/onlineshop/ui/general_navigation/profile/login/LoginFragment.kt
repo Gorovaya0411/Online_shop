@@ -6,14 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.firecode.onlineshop.MyApplication
 import com.firecode.onlineshop.R
 import com.firecode.onlineshop.databinding.FragmentCatalogBinding
 import com.firecode.onlineshop.databinding.FragmentLoginBinding
+import com.firecode.onlineshop.di.modul.ui.main.MainActivityModule
 import com.firecode.onlineshop.ui.base.BaseFragment
 import com.firecode.onlineshop.ui.general_navigation.catalog.CatalogPresenter
 import com.firecode.onlineshop.ui.main.MainActivity
 import moxy.MvpAppCompatFragment
 import moxy.presenter.InjectPresenter
+import moxy.presenter.ProvidePresenter
 
 class LoginFragment : MvpAppCompatFragment(), LoginView {
 
@@ -41,6 +44,13 @@ class LoginFragment : MvpAppCompatFragment(), LoginView {
             loginUser()
         }
 
+    }
+
+    @ProvidePresenter
+    fun provideLandingActivityPresenter(): LoginPresenter {
+        return MyApplication.appComponent.with(
+            MainActivityModule()
+        ).login
     }
 
     private fun loginUser() {

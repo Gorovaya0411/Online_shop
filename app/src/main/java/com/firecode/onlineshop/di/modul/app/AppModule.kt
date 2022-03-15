@@ -3,17 +3,18 @@ package com.firecode.onlineshop.di.modul.app
 import android.content.Context
 import android.content.SharedPreferences
 import android.net.ConnectivityManager
+import android.preference.PreferenceManager
 import com.firecode.onlineshop.MyApplication
 import com.firecode.onlineshop.data.repository.CharactersMainRepository
 import com.firecode.onlineshop.data.service.*
 import com.firecode.onlineshop.db.SessionStore
 import com.firecode.onlineshop.domain.MainUseCase
 import com.firecode.onlineshop.domain.MainUseCaseImpl
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
@@ -33,6 +34,12 @@ class AppModule(private val myApplication: MyApplication) {
 
     @Provides
     @AppScope
+    fun provideDefaultSharedPreferences(@AppContext context: Context): SharedPreferences {
+        return PreferenceManager.getDefaultSharedPreferences(context)
+    }
+
+    @AppScope
+    @Provides
     fun provideMainUseCase(
         charactersMainRepository: CharactersMainRepository, sessionStoreService: SessionStoreService
     ): MainUseCase {
@@ -64,7 +71,7 @@ class AppModule(private val myApplication: MyApplication) {
         return Retrofit.Builder()
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl("https://qa.firecode.ru/api/practice/shop/v1/")
+            .baseUrl("https://qa.firecode.ru/api/")
             .build()
     }
 
@@ -75,50 +82,10 @@ class AppModule(private val myApplication: MyApplication) {
 
     @AppScope
     @Provides
-    fun provideRetrofitSetToken(
-        gsonConverterFactory: GsonConverterFactory,
-        okHttpClient: OkHttpClient
-    ): Retrofit {
-
-        return Retrofit.Builder()
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl("httsp://qa.firecode.ru/api/practice/shop/")
-            .build()
-    }
-
-    @AppScope
-    @Provides
-    fun providesServiceSetToken(retrofit: Retrofit): SetTokenApiService =
-        retrofit.create(SetTokenApiService::class.java)
-
-    @AppScope
-    @Provides
-    fun provideRetrofitToken(
-        gsonConverterFactory: GsonConverterFactory,
-        okHttpClient: OkHttpClient
-    ): Retrofit {
-
-        return Retrofit.Builder()
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl("https://qa.firecode.ru/api/auth/")
-            .build()
-    }
-
-    @AppScope
-    @Provides
-    fun providesServiceToken(retrofit: Retrofit): GetTokenApiService =
-        retrofit.create(GetTokenApiService::class.java)
-
-    @AppScope
-    @Provides
     fun providesMainRepository(
-        apiService: OnlineShopApiService,
-        apiServiceToken: GetTokenApiService,
-        apiServiceSetToken: SetTokenApiService
+        apiService: OnlineShopApiService
     ): CharactersMainRepository =
-        CharactersMainRepository(apiService, apiServiceToken, apiServiceSetToken)
+        CharactersMainRepository(apiService)
 
     @Provides
     @AppScope
