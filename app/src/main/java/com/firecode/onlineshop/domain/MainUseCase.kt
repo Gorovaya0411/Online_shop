@@ -15,13 +15,13 @@ class MainUseCaseImpl @Inject constructor(
     private val sessionStoreService: SessionStoreService
 ) : MainUseCase {
     fun swipeRefreshCat(): Observable<DataCat> = charactersMainRepository.swipeRefreshCat()
-    fun getToken(email: String, password: String, device_name:String): GetTokenAnswer =
-        charactersMainRepository.getToken(email, password,device_name)
+    fun getToken(email: String, password: String, callback: (String) -> Unit) =
+        charactersMainRepository.getToken(email, password,callback)
 
     fun getMoreItemsCat(): Observable<DataCat> = charactersMainRepository.getMoreItemsCat()
     fun swipeRefreshProd(): Observable<DataProd> = charactersMainRepository.swipeRefreshProd()
     fun getMoreItemsProd(): Observable<DataProd> = charactersMainRepository.swipeRefreshProd()
-    fun setToken(email: String, password: String) = charactersMainRepository.setToken(email, password)
+    fun setToken(email: String, password: String, callback: (String) -> Unit) = charactersMainRepository.setToken(email, password, callback )
 
     var checkDetailedFragment: String?
         get() = sessionStoreService.checkDetailedFragment

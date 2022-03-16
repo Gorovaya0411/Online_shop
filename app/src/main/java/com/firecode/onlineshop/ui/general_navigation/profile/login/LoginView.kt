@@ -8,7 +8,7 @@ import moxy.viewstate.strategy.StateStrategyType
 
 @StateStrategyType(value = AddToEndStrategy::class)
 interface LoginView : MvpView {
-
+    fun newactivitu()
 }
 
 abstract class CommunityActivityPresenter : MvpPresenter<LoginView>() {

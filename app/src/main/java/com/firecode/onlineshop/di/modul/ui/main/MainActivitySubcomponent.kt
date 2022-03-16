@@ -4,6 +4,7 @@ import com.firecode.onlineshop.ui.general_navigation.catalog.CatalogPresenter
 import com.firecode.onlineshop.ui.general_navigation.profile.login.LoginPresenter
 import com.firecode.onlineshop.ui.general_navigation.profile.register.RegisterPresenter
 import com.firecode.onlineshop.ui.main.MainActivityPresenter
+import com.firecode.onlineshop.ui.main.MainActivityPresenterImpl
 import com.firecode.onlineshop.ui.product.ProductPresenter
 import dagger.Subcomponent
 
@@ -11,7 +12,7 @@ import dagger.Subcomponent
 @MainActivityScope
 interface MainActivitySubcomponent {
     val catalog: CatalogPresenter
-    val main: MainActivityPresenter
+    val main: MainActivityPresenterImpl
     val product: ProductPresenter
     val login: LoginPresenter
     val register: RegisterPresenter

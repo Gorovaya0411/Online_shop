@@ -27,7 +27,6 @@
                 android:layout_marginStart="12dp"
                 android:fontFamily="@font/g6"
                 android:textColor="@color/num_1_brown"
-                android:text="Профиль"
                 app:layout_constraintStart_toEndOf="@+id/materialCardView"
                 app:layout_constraintTop_toTopOf="@+id/materialCardView"
                 tool:text="Профиль" />

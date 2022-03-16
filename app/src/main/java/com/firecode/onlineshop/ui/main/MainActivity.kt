@@ -18,16 +18,17 @@ import moxy.presenter.ProvidePresenter
 class MainActivity : MvpAppCompatActivity(), MainActivityView {
 
     @InjectPresenter
-    lateinit var presenter: MainActivityPresenter
+    lateinit var presenter: MainActivityPresenterImpl
+
+    private lateinit var navController: NavController
 
     @ProvidePresenter
-    fun provideLandingActivityPresenter(): MainActivityPresenter {
+    fun provideLandingActivityPresenter(): MainActivityPresenterImpl {
         return MyApplication.appComponent.with(
             MainActivityModule()
         ).main
     }
 
-    private lateinit var navController: NavController
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)
         if (hasFocus) {

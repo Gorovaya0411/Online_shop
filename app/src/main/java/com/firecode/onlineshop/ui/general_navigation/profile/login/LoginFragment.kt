@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.Toast
 import com.firecode.onlineshop.MyApplication
 import com.firecode.onlineshop.R
@@ -51,6 +52,10 @@ class LoginFragment : MvpAppCompatFragment(), LoginView {
         return MyApplication.appComponent.with(
             MainActivityModule()
         ).login
+    }
+    override fun newactivitu() {
+        binding.loginEmailEditText.visibility = EditText.INVISIBLE
+        binding.loginPasswordEditText.visibility = EditText.VISIBLE
     }
 
     private fun loginUser() {

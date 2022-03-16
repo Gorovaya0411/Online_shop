@@ -4,13 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.firecode.onlineshop.MyApplication
 import com.firecode.onlineshop.R
 import com.firecode.onlineshop.databinding.FragmentLoginBinding
 import com.firecode.onlineshop.databinding.FragmentRegisterBinding
 import com.firecode.onlineshop.di.modul.ui.main.MainActivityModule
 import com.firecode.onlineshop.ui.base.BaseFragment
+import com.firecode.onlineshop.ui.general_navigation.NavFragment
 import com.firecode.onlineshop.ui.general_navigation.profile.login.LoginPresenter
 import com.firecode.onlineshop.ui.general_navigation.profile.login.LoginView
 import com.firecode.onlineshop.ui.main.MainActivity
@@ -19,7 +23,9 @@ import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 
 class RegisterFragment : MvpAppCompatFragment(), RegisterView {
-    private val contextActivity: MainActivity by lazy(LazyThreadSafetyMode.NONE) {
+
+
+    private val contextActivity1: MainActivity by lazy(LazyThreadSafetyMode.NONE) {
         (activity as MainActivity)
     }
 
@@ -37,9 +43,10 @@ class RegisterFragment : MvpAppCompatFragment(), RegisterView {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentRegisterBinding.bind(view)
         binding.loginLogIn.setOnClickListener {
-           loginUser()
+            loginUser()
         }
     }
+
     private lateinit var binding: FragmentRegisterBinding
 
     private fun loginUser() {
@@ -49,13 +56,13 @@ class RegisterFragment : MvpAppCompatFragment(), RegisterView {
 
             when {
                 email == "" -> Toast.makeText(
-                    contextActivity,
+                    contextActivity1,
                     "Введите E-mail",
                     Toast.LENGTH_LONG
                 )
                     .show()
                 password == "" -> Toast.makeText(
-                    contextActivity,
+                    contextActivity1,
                     "Введите пароль",
                     Toast.LENGTH_LONG
                 ).show()
@@ -64,6 +71,11 @@ class RegisterFragment : MvpAppCompatFragment(), RegisterView {
                 }
             }
         }
+    }
+
+    override fun newactivitu() {
+     binding.registerEmailEditText.visibility = EditText.INVISIBLE
+        binding.registerPasswordEditText.visibility = EditText.VISIBLE
     }
 
     override fun onCreateView(

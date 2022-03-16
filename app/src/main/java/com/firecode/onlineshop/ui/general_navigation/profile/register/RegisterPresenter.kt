@@ -1,22 +1,24 @@
 package com.firecode.onlineshop.ui.general_navigation.profile.register
 
-
-import android.util.Log
 import com.firecode.onlineshop.domain.MainUseCaseImpl
-import io.reactivex.android.schedulers.AndroidSchedulers
-import moxy.MvpPresenter
 import javax.inject.Inject
 
 class RegisterPresenter @Inject constructor(private val charactersMainUseCase: MainUseCaseImpl) :
     CommunityActivityPresente() {
 
     fun swipeRefresh(email: String, password: String) {
-        val disposable = charactersMainUseCase.setToken(email, password)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                Log.e("regeg", it.token)
-            }, {
-                Log.e("", "Все круто")
-            })
+        charactersMainUseCase.setToken(email, password) { setCheckDetailedFragment(it) }
+        if (getCheckDetailedFragment() != "null"){
+            viewState.newactivitu()
+        }
+
+    }
+
+    fun getCheckDetailedFragment(): String? {
+        return charactersMainUseCase.checkDetailedFragment
+    }
+
+    private fun setCheckDetailedFragment(mark: String?) {
+        charactersMainUseCase.checkDetailedFragment = mark
     }
 }

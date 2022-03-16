@@ -1,15 +1,15 @@
 package com.firecode.onlineshop.data.repository
 
+import android.util.Log
 import com.firecode.onlineshop.data.service.OnlineShopApiService
-import com.firecode.onlineshop.model.Credentials
-import com.firecode.onlineshop.model.DataCat
-import com.firecode.onlineshop.model.DataProd
-import com.firecode.onlineshop.model.GetTokenAnswer
+import com.firecode.onlineshop.model.*
+import com.firecode.onlineshop.ui.main.MainActivity
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.await
 import rx.Single.just
 import javax.inject.Inject
 
@@ -17,6 +17,7 @@ class CharactersMainRepository @Inject constructor(
     private val apiService: OnlineShopApiService
 ) {
     private var increment: Int = 1
+    private lateinit var token: String
 
     fun swipeRefreshCat(): Observable<DataCat> {
         increment = 1
@@ -26,27 +27,42 @@ class CharactersMainRepository @Inject constructor(
         }.subscribeOn(Schedulers.io())
     }
 
-    fun getToken(email: String, password: String, device_name: String): GetTokenAnswer {
-        var result :GetTokenAnswer
-        apiService.getToken(Credentials(email, password, device_name)).enqueue(object :
+    fun getToken(email: String, password: String, callback: (String) -> Unit) {
+        val user = Credentials2()
+        user.email = email
+        user.password = password
+        user.device_name = "Ipone"
+        apiService.getToken(
+            user
+        ).enqueue(object :
             Callback<GetTokenAnswer> {
             override fun onResponse(call: Call<GetTokenAnswer>, response: Response<GetTokenAnswer>?) {
-               response.
+                callback.invoke(response?.body()?.token.toString())
             }
 
             override fun onFailure(call: Call<GetTokenAnswer>, t: Throwable?) {
-                //Произошла ошибка
+                Log.e("ere", t.toString())
             }
         })
-        return result
     }
 
-    fun setToken(email: String, password: String): Observable<GetTokenAnswer> {
-        increment = 1
-        return apiService.setToken(email, password).flatMap { it ->
+    fun setToken(email: String, password: String, callback: (String) -> Unit) {
+        val user = Credentials()
+        user.email = email
+        user.password = password
+        user.password_confirmation = password
+        apiService.setToken(
+            user
+        ).enqueue(object :
+            Callback<token> {
+             override fun onResponse(call: Call<token>, response: Response<token>?) {
+                 callback.invoke(response?.body()?.token.toString())
+             }
 
-            return@flatMap Observable.just(it)
-        }.subscribeOn(Schedulers.io())
+            override fun onFailure(call: Call<token>, t: Throwable?) {
+                Log.e("ere", t.toString())
+            }
+        })
     }
 
     fun getMoreItemsCat(): Observable<DataCat> {

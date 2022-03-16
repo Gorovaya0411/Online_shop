@@ -17,7 +17,10 @@ class LoginPresenter @Inject constructor(private val charactersMainUseCase: Main
     CommunityActivityPresenter() {
 
     fun swipeRefresh(email: String, password: String) {
-        Log.e("dfdfgv", charactersMainUseCase.getToken(email,password,"iPhone").token)
+        charactersMainUseCase.getToken(email, password) { setCheckDetailedFragment(it) }
+        if (getCheckDetailedFragment() != "null") {
+            viewState.newactivitu()
+        }
     }
 
     override fun getCheckDetailedFragment(): String? {

@@ -3,6 +3,7 @@ package com.firecode.onlineshop.ui.general_navigation
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.firecode.onlineshop.R
 import com.firecode.onlineshop.databinding.FragmentGeneralPoetsBinding
@@ -28,6 +29,10 @@ class NavFragment : BaseFragment<FragmentGeneralPoetsBinding>() {
                 R.id.community_fragment_container_view
             )
         )
+    }
+
+     fun self() {
+        findNavController().navigate(R.id.action_profileFragment_self)
     }
 
     override fun initViewBinding() = FragmentGeneralPoetsBinding.inflate(layoutInflater)
