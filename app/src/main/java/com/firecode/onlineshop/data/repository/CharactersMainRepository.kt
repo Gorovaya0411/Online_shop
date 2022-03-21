@@ -2,24 +2,70 @@ package com.firecode.onlineshop.data.repository
 
 import android.util.Log
 import com.firecode.onlineshop.data.service.OnlineShopApiService
+import com.firecode.onlineshop.data.service.ProfileApiService
 import com.firecode.onlineshop.model.*
-import com.firecode.onlineshop.ui.main.MainActivity
+import com.squareup.okhttp.MediaType
+import com.squareup.okhttp.RequestBody
+import com.squareup.okhttp.ResponseBody
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.await
-import rx.Single.just
 import javax.inject.Inject
 
 class CharactersMainRepository @Inject constructor(
-    private val apiService: OnlineShopApiService
+    private val apiService: OnlineShopApiService,
+    private val profileService: ProfileApiService
 ) {
     private var increment: Int = 1
-    private lateinit var token: String
 
-    fun swipeRefreshCat(): Observable<DataCat> {
+    fun getToken(email: String, password: String, callback: (String) -> Unit) {
+        val user = RequestBodyLogin()
+        user.email = email
+        user.password = password
+        user.device_name = "Iphone"
+        profileService.getToken(
+            user
+        ).enqueue(object :
+            Callback<ResponseBody> {
+            override fun onResponse(
+                call: Call<ResponseBody>,
+                response: Response<ResponseBody>?
+            ) {
+                callback.invoke(response?.body().toString())
+            }
+
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable?) {
+                Log.e("error", t.toString())
+            }
+        })
+    }
+
+    fun setToken(email: String, password: String, callback: (String) -> Unit) {
+        val user = RequestBodyRegistration(
+            RequestBody.create(MediaType.parse("application/json"), email),
+            RequestBody.create(MediaType.parse("application/json"), password),
+            RequestBody.create(MediaType.parse("application/json"), password)
+        )
+
+        profileService.setToken(
+            user
+        ).enqueue(object :
+            Callback<ResponseBody> {
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>?) {
+                if (response != null) {
+                    callback.invoke(response.body()?.string().toString())
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable?) {
+                Log.e("error", t.toString())
+            }
+        })
+    }
+
+    fun swipeRefreshCatalog(): Observable<DataCatalog> {
         increment = 1
         return apiService.getCategories(page = increment).flatMap { it ->
 
@@ -27,45 +73,7 @@ class CharactersMainRepository @Inject constructor(
         }.subscribeOn(Schedulers.io())
     }
 
-    fun getToken(email: String, password: String, callback: (String) -> Unit) {
-        val user = Credentials2()
-        user.email = email
-        user.password = password
-        user.device_name = "Ipone"
-        apiService.getToken(
-            user
-        ).enqueue(object :
-            Callback<GetTokenAnswer> {
-            override fun onResponse(call: Call<GetTokenAnswer>, response: Response<GetTokenAnswer>?) {
-                callback.invoke(response?.body()?.token.toString())
-            }
-
-            override fun onFailure(call: Call<GetTokenAnswer>, t: Throwable?) {
-                Log.e("ere", t.toString())
-            }
-        })
-    }
-
-    fun setToken(email: String, password: String, callback: (String) -> Unit) {
-        val user = Credentials()
-        user.email = email
-        user.password = password
-        user.password_confirmation = password
-        apiService.setToken(
-            user
-        ).enqueue(object :
-            Callback<token> {
-             override fun onResponse(call: Call<token>, response: Response<token>?) {
-                 callback.invoke(response?.body()?.token.toString())
-             }
-
-            override fun onFailure(call: Call<token>, t: Throwable?) {
-                Log.e("ere", t.toString())
-            }
-        })
-    }
-
-    fun getMoreItemsCat(): Observable<DataCat> {
+    fun getMoreItemsCatalog(): Observable<DataCatalog> {
         increment += 1
 
         return apiService.getCategories(page = increment).flatMap { data ->
@@ -73,7 +81,7 @@ class CharactersMainRepository @Inject constructor(
         }.subscribeOn(Schedulers.io())
     }
 
-    fun swipeRefreshProd(): Observable<DataProd> {
+    fun swipeRefreshProduct(): Observable<DataProduct> {
         increment = 1
         return apiService.getProducts(page = increment).flatMap { it ->
 
@@ -81,7 +89,7 @@ class CharactersMainRepository @Inject constructor(
         }.subscribeOn(Schedulers.io())
     }
 
-    fun getMoreItemsProd(): Observable<DataProd> {
+    fun getMoreItemsProduct(): Observable<DataProduct> {
         increment += 1
 
         return apiService.getProducts(page = increment).flatMap { data ->

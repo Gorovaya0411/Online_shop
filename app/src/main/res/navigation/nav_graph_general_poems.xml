@@ -5,11 +5,27 @@
     android:id="@+id/nav_graph_general_poems"
     app:startDestination="@id/catalogFragment">
 
+    <argument
+        android:name="title"
+        app:argType="string" />
+    <argument
+        android:name="img"
+        app:argType="string" />
+    <argument
+        android:name="price"
+        app:argType="integer" />
+    <argument
+        android:name="info"
+        app:argType="string" />
+    <fragment
+        android:id="@+id/detailedFragment"
+        android:name="com.firecode.onlineshop.ui.detailedFragment.DetailedFragment"
+        android:label="DetailedFragment" />
     <fragment
         android:id="@+id/basketFragment"
         android:name="com.firecode.onlineshop.ui.general_navigation.basket.BasketFragment"
         android:label="BasketFragment"
-        tools:layout="@layout/fragment_basket"/>
+        tools:layout="@layout/fragment_basket" />
     <fragment
         android:id="@+id/catalogFragment"
         android:name="com.firecode.onlineshop.ui.general_navigation.catalog.CatalogFragment"
@@ -31,28 +47,12 @@
     <fragment
         android:id="@+id/productFragment"
         android:name="com.firecode.onlineshop.ui.product.ProductFragment"
-        android:label="ProductFragment" >
-        <argument
-            android:name="categ"
-            app:argType="string" />
+        android:label="ProductFragment">
         <action
             android:id="@+id/action_productFragment_to_detailedFragment"
             app:destination="@id/detailedFragment" />
+        <argument
+            android:name="catalog"
+            app:argType="string" />
     </fragment>
-    <fragment
-        android:id="@+id/detailedFragment"
-        android:name="com.firecode.onlineshop.ui.detailedFragment.DetailedFragment"
-        android:label="DetailedFragment" />
-    <argument
-        android:name="title"
-        app:argType="string" />
-    <argument
-        android:name="img"
-        app:argType="string" />
-    <argument
-        android:name="price"
-        app:argType="integer" />
-    <argument
-        android:name="info"
-        app:argType="string" />
 </navigation>

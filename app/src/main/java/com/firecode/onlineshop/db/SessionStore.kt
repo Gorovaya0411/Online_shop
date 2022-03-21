@@ -4,13 +4,13 @@ import android.content.SharedPreferences
 
 class SessionStore(private val sharedPreferences: SharedPreferences) {
 
-    var checkDetailedFragment: String?
-        get() = sharedPreferences.getString(KEY_CHECK_DETAILED_FRAGMENT, "")
+    var saveToken: String?
+        get() = sharedPreferences.getString(KEY_SAVE_TOKEN, "")
         set(value) {
-            sharedPreferences.edit().putString(KEY_CHECK_DETAILED_FRAGMENT, value).apply()
+            sharedPreferences.edit().putString(KEY_SAVE_TOKEN, value).apply()
         }
 
     companion object {
-        const val KEY_CHECK_DETAILED_FRAGMENT = "check_detailed_fragment"
+        const val KEY_SAVE_TOKEN = "check_save_token"
     }
 }

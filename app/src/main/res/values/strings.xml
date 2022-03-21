@@ -15,4 +15,7 @@
     <string name="username">Имя пользователя</string>
 
     <string name="close">close</string>
+
+    <string name="species">%s руб.</string>
+    <string name="txt_basket">в корзине + %d</string>
 </resources>

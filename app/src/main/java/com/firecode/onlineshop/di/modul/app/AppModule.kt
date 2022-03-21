@@ -16,7 +16,9 @@ import dagger.Provides
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Named
 
 @Module()
 class AppModule(private val myApplication: MyApplication) {
@@ -63,29 +65,63 @@ class AppModule(private val myApplication: MyApplication) {
 
     @AppScope
     @Provides
+    fun provideScalars(): ScalarsConverterFactory {
+        return ScalarsConverterFactory.create()
+    }
+
+    @Named("provideRetrofit")
+    @AppScope
+    @Provides
     fun provideRetrofit(
-        gsonConverterFactory: GsonConverterFactory,
         okHttpClient: OkHttpClient
     ): Retrofit {
 
         return Retrofit.Builder()
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
+            .client(okHttpClient)
+            .baseUrl("https://qa.firecode.ru/api/practice/shop/v1/")
+            .build()
+    }
+
+    @Named("provideRetrofitProfile")
+    @AppScope
+    @Provides
+    fun provideRetrofitProfile(
+        okHttpClient: OkHttpClient
+    ): Retrofit {
+
+        return Retrofit.Builder()
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addConverterFactory(ScalarsConverterFactory.create())
+            .client(okHttpClient)
             .baseUrl("https://qa.firecode.ru/api/")
             .build()
     }
 
     @AppScope
     @Provides
-    fun providesService(retrofit: Retrofit): OnlineShopApiService =
+    fun providesService(
+        @Named("provideRetrofit")
+        retrofit: Retrofit
+    ): OnlineShopApiService =
         retrofit.create(OnlineShopApiService::class.java)
 
     @AppScope
     @Provides
+    fun profileService(
+        @Named("provideRetrofitProfile")
+        retrofit: Retrofit
+    ): ProfileApiService =
+        retrofit.create(ProfileApiService::class.java)
+
+    @AppScope
+    @Provides
     fun providesMainRepository(
-        apiService: OnlineShopApiService
+        apiService: OnlineShopApiService,
+        profileApiService: ProfileApiService
     ): CharactersMainRepository =
-        CharactersMainRepository(apiService)
+        CharactersMainRepository(apiService, profileApiService)
 
     @Provides
     @AppScope

@@ -53,7 +53,8 @@ class ProductAdapter(private var callback: (AnswerProducts) -> Unit) :
             binding.textView3.text = model.title
 
             Picasso.get()
-                .load(model.img)
+                .load(model.img+".webp")
+                .fit()
                 .into(binding.imageView)
 
             itemView.setOnClickListener {

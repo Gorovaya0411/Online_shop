@@ -5,16 +5,12 @@ import android.view.View
 import com.firecode.onlineshop.R
 import com.firecode.onlineshop.databinding.FragmentDetailedProductBinding
 import com.firecode.onlineshop.ui.base.BaseFragment
-import com.firecode.onlineshop.ui.main.MainActivity
 import com.squareup.picasso.Picasso
 
 
 class DetailedFragment : BaseFragment<FragmentDetailedProductBinding>() {
 
-    private val contextActivity: MainActivity by lazy(LazyThreadSafetyMode.NONE) {
-        (activity as MainActivity)
-    }
-    var num = 0
+    var numberItemsInBasket = 0
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -30,17 +26,17 @@ class DetailedFragment : BaseFragment<FragmentDetailedProductBinding>() {
         }
 
         binding.textViewName.text = arguments?.getString("title")!!
-        binding.textViewSpecies.text = "$result руб."
+        binding.textViewSpecies.text = getString(R.string.species, result)
         binding.textView.text = arguments?.getString("info")!!
 
         Picasso.get()
-            .load(arguments?.getString("img")!!)
+            .load(arguments?.getString("img")!!+".webp")
             .into(binding.imageViewCharacter)
 
         binding.bottom.setOnClickListener {
-            num ++
-            binding.bottom.setBackgroundResource(R.drawable.ic_group_1__2_)
-            binding.txt.text = "в корзине + $num"
+            numberItemsInBasket++
+            binding.bottom.setBackgroundResource(R.drawable.ic_in_busket_add)
+            binding.txt.text = getString(R.string.txt_basket, numberItemsInBasket)
         }
 
     }

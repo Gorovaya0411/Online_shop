@@ -4,15 +4,15 @@ import com.firecode.onlineshop.db.SessionStore
 import javax.inject.Inject
 
 interface SessionStoreService {
-    var checkDetailedFragment: String?
+    var saveToken: String?
 }
 
 class SessionStoreServiceImpl @Inject constructor(private val sessionStore: SessionStore) :
     SessionStoreService {
 
-    override var checkDetailedFragment: String?
-        get() = sessionStore.checkDetailedFragment
+    override var saveToken: String?
+        get() = sessionStore.saveToken
         set(value) {
-            sessionStore.checkDetailedFragment = value
+            sessionStore.saveToken = value
         }
 }

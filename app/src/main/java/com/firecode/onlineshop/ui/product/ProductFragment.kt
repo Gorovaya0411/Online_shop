@@ -1,6 +1,5 @@
 package com.firecode.onlineshop.ui.product
 
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
@@ -50,15 +49,15 @@ class ProductFragment : MvpAppCompatFragment(), ProductView {
 
         workWithAdapter()
         visibilityProgressBar(false)
-        mainPresenter.swipeRefresh(arguments?.getString("categ")!!)
+        mainPresenter.swipeRefresh(arguments?.getString("catalog")!!)
 
         random = Random()
         handler = Handler()
         binding.swipeRefreshLayout.setOnRefreshListener {
 
             runnable = Runnable {
-                mainPresenter.swipeRefresh(arguments?.getString("categ")!!)
-                mainPresenter.getMoreItems(arguments?.getString("categ")!!)
+                mainPresenter.swipeRefresh(arguments?.getString("catalog")!!)
+                mainPresenter.getMoreItems(arguments?.getString("catalog")!!)
                 binding.swipeRefreshLayout.isRefreshing = false
             }
 
@@ -69,7 +68,7 @@ class ProductFragment : MvpAppCompatFragment(), ProductView {
 
         binding.recyclerView.addOnScrollListener(
             PaginationScrollListener(
-                { mainPresenter.getMoreItems(arguments?.getString("categ")!!) },
+                { mainPresenter.getMoreItems(arguments?.getString("catalog")!!) },
                 20
             )
         )
@@ -100,7 +99,11 @@ class ProductFragment : MvpAppCompatFragment(), ProductView {
     }
 
     override fun populateData(model: List<AnswerProducts>) {
-        myAdapter.setData(model)
+        if (model.isEmpty()){
+            binding.productEmptyTxt.text = "К сожалению в данный момент дананя продукция недоступна"
+        }else{
+            myAdapter.setData(model)
+        }
     }
 
     private fun openingNewActivity(model: AnswerProducts) {
@@ -112,7 +115,6 @@ class ProductFragment : MvpAppCompatFragment(), ProductView {
             putInt("price", model.price)
         }
         findNavController().navigate(R.id.detailedFragment, bundle)
-
     }
 
     override fun addData(model: List<AnswerProducts>) {

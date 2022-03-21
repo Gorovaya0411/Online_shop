@@ -2,7 +2,7 @@ package com.firecode.onlineshop.model
 
 import com.google.gson.annotations.SerializedName
 
-data class Credentials2(
+data class RequestBodyLogin(
     @SerializedName("email")
     var email: String = "",
     @SerializedName("password")

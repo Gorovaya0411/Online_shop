@@ -4,19 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.Toast
-import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.firecode.onlineshop.MyApplication
 import com.firecode.onlineshop.R
-import com.firecode.onlineshop.databinding.FragmentLoginBinding
 import com.firecode.onlineshop.databinding.FragmentRegisterBinding
 import com.firecode.onlineshop.di.modul.ui.main.MainActivityModule
-import com.firecode.onlineshop.ui.base.BaseFragment
-import com.firecode.onlineshop.ui.general_navigation.NavFragment
-import com.firecode.onlineshop.ui.general_navigation.profile.login.LoginPresenter
-import com.firecode.onlineshop.ui.general_navigation.profile.login.LoginView
 import com.firecode.onlineshop.ui.main.MainActivity
 import moxy.MvpAppCompatFragment
 import moxy.presenter.InjectPresenter
@@ -24,13 +16,12 @@ import moxy.presenter.ProvidePresenter
 
 class RegisterFragment : MvpAppCompatFragment(), RegisterView {
 
-
-    private val contextActivity1: MainActivity by lazy(LazyThreadSafetyMode.NONE) {
+    private val contextActivity: MainActivity by lazy(LazyThreadSafetyMode.NONE) {
         (activity as MainActivity)
     }
 
     @InjectPresenter
-    lateinit var maPresenter: RegisterPresenter
+    lateinit var registerPresenter: RegisterPresenter
 
     @ProvidePresenter
     fun provideLandingActivityPresenter(): RegisterPresenter {
@@ -56,26 +47,21 @@ class RegisterFragment : MvpAppCompatFragment(), RegisterView {
 
             when {
                 email == "" -> Toast.makeText(
-                    contextActivity1,
+                    contextActivity,
                     "Введите E-mail",
                     Toast.LENGTH_LONG
                 )
                     .show()
                 password == "" -> Toast.makeText(
-                    contextActivity1,
+                    contextActivity,
                     "Введите пароль",
                     Toast.LENGTH_LONG
                 ).show()
                 else -> {
-                    maPresenter.swipeRefresh(email, password)
+                    registerPresenter.swipeRefresh(email, password)
                 }
             }
         }
-    }
-
-    override fun newactivitu() {
-     binding.registerEmailEditText.visibility = EditText.INVISIBLE
-        binding.registerPasswordEditText.visibility = EditText.VISIBLE
     }
 
     override fun onCreateView(

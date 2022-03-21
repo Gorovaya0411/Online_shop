@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.firecode.onlineshop.MyApplication
 import com.firecode.onlineshop.R
@@ -105,8 +104,8 @@ class CatalogFragment : MvpAppCompatFragment(), CatalogView {
 
     private fun openingNewActivity(model: AnswerCategories) {
         val bundle = Bundle()
-        with(bundle){
-            putString("categ", model.title)
+        with(bundle) {
+            putString("catalog", model.title)
         }
         findNavController().navigate(R.id.productFragment, bundle)
     }

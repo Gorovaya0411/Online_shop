@@ -19,7 +19,7 @@
         android:id="@+id/community_bottom_navigation_view"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/buttom_color"
+        android:background="@color/bottom_color"
         app:itemIconTint="@drawable/selector_general"
         app:itemRippleColor="@color/num_1_brown"
         app:itemTextColor="@drawable/selector_general"

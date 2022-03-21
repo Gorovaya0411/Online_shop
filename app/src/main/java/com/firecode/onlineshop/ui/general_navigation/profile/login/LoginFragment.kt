@@ -5,15 +5,11 @@ import android.view.LayoutInflater
 
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.Toast
 import com.firecode.onlineshop.MyApplication
 import com.firecode.onlineshop.R
-import com.firecode.onlineshop.databinding.FragmentCatalogBinding
 import com.firecode.onlineshop.databinding.FragmentLoginBinding
 import com.firecode.onlineshop.di.modul.ui.main.MainActivityModule
-import com.firecode.onlineshop.ui.base.BaseFragment
-import com.firecode.onlineshop.ui.general_navigation.catalog.CatalogPresenter
 import com.firecode.onlineshop.ui.main.MainActivity
 import moxy.MvpAppCompatFragment
 import moxy.presenter.InjectPresenter
@@ -26,7 +22,7 @@ class LoginFragment : MvpAppCompatFragment(), LoginView {
     }
 
     @InjectPresenter
-    lateinit var mainPresenter: LoginPresenter
+    lateinit var loginPresenter: LoginPresenter
     private lateinit var binding: FragmentLoginBinding
 
     override fun onCreateView(
@@ -37,14 +33,12 @@ class LoginFragment : MvpAppCompatFragment(), LoginView {
         return inflater.inflate(R.layout.fragment_login, container, false)
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentLoginBinding.bind(view)
         binding.loginLogIn.setOnClickListener {
             loginUser()
         }
-
     }
 
     @ProvidePresenter
@@ -52,10 +46,6 @@ class LoginFragment : MvpAppCompatFragment(), LoginView {
         return MyApplication.appComponent.with(
             MainActivityModule()
         ).login
-    }
-    override fun newactivitu() {
-        binding.loginEmailEditText.visibility = EditText.INVISIBLE
-        binding.loginPasswordEditText.visibility = EditText.VISIBLE
     }
 
     private fun loginUser() {
@@ -76,7 +66,7 @@ class LoginFragment : MvpAppCompatFragment(), LoginView {
                     Toast.LENGTH_LONG
                 ).show()
                 else -> {
-                    mainPresenter.swipeRefresh(email, password)
+                    loginPresenter.swipeRefresh(email, password)
                 }
             }
         }

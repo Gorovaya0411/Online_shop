@@ -6,8 +6,20 @@
     android:layout_height="match_parent"
     android:background="@color/num_2_pink">
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    <TextView
+        android:id="@+id/product_empty_txt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/reza_zulmi_sans"
+        android:gravity="center"
+        android:textColor="@color/num_1_brown"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

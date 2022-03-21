@@ -1,12 +1,13 @@
 package com.firecode.onlineshop.model
 
 import com.google.gson.annotations.SerializedName
+import com.squareup.okhttp.RequestBody
 
-data class Credentials(
+data class RequestBodyRegistration(
     @SerializedName("email")
-    var email: String = "",
+    var email: RequestBody,
     @SerializedName("password")
-    var password: String = "",
+    var password: RequestBody,
     @SerializedName("password_confirmation")
-    var password_confirmation: String = ""
+    var password_confirmation: RequestBody
 )

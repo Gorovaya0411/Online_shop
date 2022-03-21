@@ -12,7 +12,6 @@ class CatalogPresenter @Inject constructor(private val charactersMainUseCase: Ma
     private var isRequest: Boolean = false
 
     fun swipeRefresh(): Boolean {
-
         val disposable = charactersMainUseCase.swipeRefreshCat()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({

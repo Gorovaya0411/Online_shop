@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.firecode.onlineshop.R
 import com.firecode.onlineshop.model.AnswerProducts
 
-
 class BasketAdapter :
     RecyclerView.Adapter<BasketAdapter.MyViewHolder>() {
     var dataTest = mutableListOf<AnswerProducts?>()
@@ -35,14 +34,9 @@ class BasketAdapter :
         dataTest[position]?.let { holder.bind(it) }
     }
 
-
     class MyViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
-
-
-
         fun bind(model: AnswerProducts) {
-
         }
     }
 }

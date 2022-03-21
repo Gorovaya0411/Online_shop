@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:fontFamily="@font/g6"
-                android:textColor="@color/buttom_color"
+                android:textColor="@color/bottom_color"
                 android:textStyle="bold"
                 android:text="Войдите или зарегистрируйтесь"
                 app:layout_constraintBottom_toBottomOf="@+id/materialCardView"
@@ -49,7 +49,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_margin="12dp"
-                android:backgroundTint="@color/buttom_color"
+                android:backgroundTint="@color/bottom_color"
                 app:cardCornerRadius="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">

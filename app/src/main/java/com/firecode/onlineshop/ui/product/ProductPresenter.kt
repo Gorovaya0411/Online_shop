@@ -1,6 +1,5 @@
 package com.firecode.onlineshop.ui.product
 
-
 import com.firecode.onlineshop.domain.MainUseCaseImpl
 import com.firecode.onlineshop.model.AnswerProducts
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -30,7 +29,6 @@ class ProductPresenter @Inject constructor(private val charactersMainUseCase: Ma
             })
         return true
     }
-
 
     fun getMoreItems(title:String) {
 

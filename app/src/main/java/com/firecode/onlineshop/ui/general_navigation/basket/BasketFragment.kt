@@ -22,17 +22,6 @@ class BasketFragment : BaseFragment<FragmentBasketBinding>() {
         binding.listPoetRecyclerView.layoutManager =
             LinearLayoutManager(contextActivity, RecyclerView.VERTICAL, false)
         binding.listPoetRecyclerView.adapter = myAdapter
-
-//        val poem: PoemAnswer? = PoemAnswer()
-//        val listPoemPoet: MutableList<PoemAnswer?> = mutableListOf()
-//        listPoemPoet.add(poem)
-//
-//        myAdapter.setData(listPoemPoet)
-    }
-
-    override fun onStart() {
-        super.onStart()
-
     }
 
     override fun initViewBinding() = FragmentBasketBinding.inflate(layoutInflater)
